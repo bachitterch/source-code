@@ -1,4 +1,4 @@
-name: Portfolio
+name: Main
 
 on:
   workflow_dispatch:
