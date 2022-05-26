@@ -33,20 +33,12 @@ jobs:
         run: yarn install --frozen-lockfile
       - run: yarn test
         env:
-          NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
-          ABOUT_PAGE_ID: ${{ secrets.ABOUT_PAGE_ID }}
-          NOW_PAGE_ID: ${{ secrets.NOW_PAGE_ID }}
-          COLOPHON_PAGE_ID: ${{ secrets.COLOPHON_PAGE_ID }}
-          BLOG_DATABASE_ID: ${{ secrets.BLOG_DATABASE_ID }}
-          PROJECTS_DATABASE_ID: ${{ secrets.PROJECTS_DATABASE_ID }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-          OPEN_WEATHER_API_KEY: ${{ secrets.OPEN_WEATHER_API_KEY }}
-          REVUE_API_KEY: ${{ secrets.REVUE_API_KEY }}
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.TURBO_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID}}
-          vercel-project-id: ${{ secrets.PROJECT_ID}}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.TWCHAT_PROJECT_ID }}
