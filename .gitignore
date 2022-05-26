@@ -16,6 +16,15 @@ build
 # misc
 .DS_Store
 *.pem
+.gitmodules
+.svn
+.cache
+.now
+
+#lock files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
 
 # debug
 npm-debug.log*
@@ -31,3 +40,7 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+
+# vercel
+.vercel
