@@ -31,13 +31,13 @@ const Blog = ({ posts }) => {
       />
       <Container>
         <h1>Blog</h1>
-        <p className='text-tiny text-white-600 mb-6 md:text-base'>
+        <p className='mb-6 text-tiny text-white-600 md:text-base'>
           Here I share my knowledge about development, CSS, Javascript and
           experience in my life.
         </p>
         <div className='post_list space-y-6'>
           {(!posts.length && (
-            <p className='text-white-600 text-center text-base'>
+            <p className='text-center text-base text-white-600'>
               No Article Found!
             </p>
           )) ||
@@ -56,7 +56,7 @@ const Blog = ({ posts }) => {
                         blurDataURL={post.thumbnail}
                         className='postImage rounded-xl'
                       ></Image>
-                      <h2 className='text-white-800 mb-2 mt-4'>{post.title}</h2>
+                      <h2 className='mb-2 mt-4 text-white-800'>{post.title}</h2>
                       <p className='text-base'>{post.summary}</p>
                     </a>
                   </Link>

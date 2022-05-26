@@ -14,7 +14,7 @@ export const Text = ({ text }) => {
           bold ? 'font-bold' : null,
           italic ? 'italic' : null,
           code
-            ? 'bg-white-10 rounded-md py-1 px-2 font-mono text-sm tracking-wider'
+            ? 'rounded-md bg-white-10 py-1 px-2 font-mono text-sm tracking-wider'
             : null,
           strikethrough ? 'line-through' : null,
           underline ? 'underline' : null
@@ -81,7 +81,7 @@ export const renderBlocks = block => {
           <label className='to-do flex items-center gap-2' htmlFor={id}>
             <input
               type='checkbox'
-              className='hover:ring-white-600  checked:ring-white-300 text-white-300  rounded-md hover:ring focus:outline-0 focus:ring-0 active:ring-0'
+              className='rounded-md  text-white-300 checked:ring-white-300  hover:ring hover:ring-white-600 focus:outline-0 focus:ring-0 active:ring-0'
               id={id}
               aria-describedby={value.rich_text}
               defaultChecked={value.checked}
@@ -105,7 +105,7 @@ export const renderBlocks = block => {
             className='postImage h-full max-h-[684px] w-full max-w-[1200px] rounded-xl'
           />
           {caption && (
-            <figcaption className='text-tiny ml-px italic opacity-60'>
+            <figcaption className='ml-px text-tiny italic opacity-60'>
               {caption}
             </figcaption>
           )}
@@ -116,13 +116,13 @@ export const renderBlocks = block => {
       return <hr key={id} />
     case 'quote':
       return (
-        <blockquote className='bg-white-10 border-l-4 px-4 py-2' key={id}>
+        <blockquote className='border-l-4 bg-white-10 px-4 py-2' key={id}>
           {value.rich_text[0].plain_text}
         </blockquote>
       )
     case 'callout':
       return (
-        <div className='callout bg-white-10 flex items-center gap-3 rounded-md px-4 py-4'>
+        <div className='callout flex items-center gap-3 rounded-md bg-white-10 px-4 py-4'>
           {value.icon && <span>{value.icon.emoji}</span>}
           <div>
             <Text text={value.rich_text} />
@@ -131,8 +131,8 @@ export const renderBlocks = block => {
       )
     case 'code':
       return (
-        <div className='text-primary bg-white-10  relative rounded-2xl'>
-          <p className='text-tiny border-b border-b-white px-6 py-3 capitalize opacity-60'>
+        <div className='text-primary relative  rounded-2xl bg-white-10'>
+          <p className='border-b-white border-b px-6 py-3 text-tiny capitalize opacity-60'>
             {value.language}
           </p>
 

@@ -40,7 +40,8 @@ yarn-error.log*
 .env.production.local
 
 #rss - portfolio
-/rss/
+/rss/*
+rss/feed.xml
 
 # turbo
 .turbo
@@ -48,3 +49,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#tsc
+*.tsbuildinfo

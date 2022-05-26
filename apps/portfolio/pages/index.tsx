@@ -88,7 +88,7 @@ const Home = ({ projects, posts }) => {
             <h2 className='mb-6 mt-2'>Projects</h2>
             <div className='space-y-6'>
               {(!projects.length && (
-                <p className='text-white-600 text-center text-base'>
+                <p className='text-center text-base text-white-600'>
                   No Projects Found!
                 </p>
               )) ||
@@ -134,7 +134,7 @@ const Home = ({ projects, posts }) => {
             <h2 className='mb-6 mt-2'>Posts</h2>
             <div className='space-y-6'>
               {(!posts.length && (
-                <p className='text-white-600 text-center text-base'>
+                <p className='text-center text-base text-white-600'>
                   No Article Found!
                 </p>
               )) ||
@@ -153,7 +153,7 @@ const Home = ({ projects, posts }) => {
                             blurDataURL={post.thumbnail}
                             className='projectImage rounded-xl'
                           ></Image>
-                          <h3 className='text-white-800 mb-2 mt-4'>
+                          <h3 className='mb-2 mt-4 text-white-800'>
                             {post.title}
                           </h3>
                           <p className='text-base'>{post.summary}</p>

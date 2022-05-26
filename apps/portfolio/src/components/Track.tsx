@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 const Track = (track: Song) => {
   return (
-    <div className='border-white-200 mt-6 flex flex-row items-start border-b'>
-      <p className='text-white-600 -mt-[3px] text-sm font-semibold'>
+    <div className='mt-6 flex flex-row items-start border-b border-white-200'>
+      <p className='-mt-[3px] text-sm font-semibold text-white-600'>
         {track.ranking}
       </p>
       <div className='mb-4 flex items-center pl-3'>
@@ -22,11 +22,11 @@ const Track = (track: Song) => {
             href={track?.songUrl}
             target='_blank'
             rel='noopener noreferrer'
-            className='text-white-800 w-60 truncate font-medium sm:w-96 md:w-full'
+            className='w-60 truncate font-medium text-white-800 sm:w-96 md:w-full'
           >
             {track?.title}
           </a>
-          <p className='text-white-600  w-60 truncate sm:w-96 md:w-full'>
+          <p className='w-60  truncate text-white-600 sm:w-96 md:w-full'>
             {track?.artist}
           </p>
         </div>

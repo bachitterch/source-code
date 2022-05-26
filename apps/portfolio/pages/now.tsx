@@ -36,7 +36,7 @@ const Now = ({ content }) => {
       />
       <Layout>
         <h1>Now</h1>
-        <p className='text-tiny text-white-600 mb-6 md:text-base'>
+        <p className='mb-6 text-tiny text-white-600 md:text-base'>
           What I&#39;m working on, currently interested in or have plans to
           learn in near future. Mostly everything can be found here.
         </p>
@@ -47,7 +47,7 @@ const Now = ({ content }) => {
         </div>
         <div>
           <h2 className='mt-2'>Top Tracks</h2>
-          <p className='text-tiny text-white-600 mb-6 md:text-base'>
+          <p className='mb-6 text-tiny text-white-600 md:text-base'>
             Songs I&#39;ve been listening the most recently.
           </p>
           <TopTracks />

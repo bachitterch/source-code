@@ -100,7 +100,7 @@ const Post = ({ content, frontMatter }) => {
             alt={'article cover'}
           ></Image>
           <h1 className='mb-2'>{frontMatter.Title}</h1>
-          <div className='text-white-600 mb-10 flex items-center space-x-2 italic'>
+          <div className='mb-10 flex items-center space-x-2 italic text-white-600'>
             --&nbsp;
             <a
               href='https://twitter.com/bachitterch'

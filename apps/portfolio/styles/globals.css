@@ -23,11 +23,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-white-200 rounded-lg;
+  @apply rounded-lg bg-white-200;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white-800 rounded-lg;
+  @apply rounded-lg bg-white-800;
 }
 
 html {
@@ -58,7 +58,7 @@ p {
 }
 
 a {
-  @apply text-white-500 font-medium underline-offset-1  hover:underline;
+  @apply font-medium text-white-500 underline-offset-1  hover:underline;
 }
 
 .spotify-image {

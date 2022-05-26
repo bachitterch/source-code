@@ -75,7 +75,7 @@ const WeatherWidget = () => {
           <p className='mb-0.5 text-sm font-semibold leading-none'>
             {data?.city}
           </p>
-          <div className='text-white-500 flex gap-2 text-xs'>
+          <div className='flex gap-2 text-xs text-white-500'>
             <span>{Math.round(data?.max)}°</span>
             <span>{Math.round(data?.min)}°</span>
           </div>

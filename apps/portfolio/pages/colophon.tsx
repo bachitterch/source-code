@@ -35,7 +35,7 @@ const Colophon = ({ content }) => {
       />
       <Layout>
         <h1>Colophon</h1>
-        <p className='text-tiny text-white-600 mb-6 md:text-base'>
+        <p className='mb-6 text-tiny text-white-600 md:text-base'>
           Complete list of tools, resources and people that have made this site.
           Any changes related to this website will be posted here.
         </p>

@@ -11,7 +11,7 @@ const NowPlaying = () => {
   )
 
   return (
-    <div className='bg-white-10 flex h-56 w-full flex-col justify-end truncate rounded-xl p-6'>
+    <div className='flex h-56 w-full flex-col justify-end truncate rounded-xl bg-white-10 p-6'>
       <div className='relative flex flex-col justify-end'>
         <div>
           {data?.songUrl ? (
@@ -34,7 +34,7 @@ const NowPlaying = () => {
             </svg>
           )}
         </div>
-        <p className='text-spotify_green -mb-2 mt-3 text-xs'>
+        <p className='-mb-2 mt-3 text-xs text-spotify_green'>
           {data?.songUrl ? (
             <span>Now Playing</span>
           ) : (
@@ -44,7 +44,7 @@ const NowPlaying = () => {
         <div className='w-full truncate'>
           {data?.songUrl ? (
             <a
-              className='text-white-900 truncate text-xl font-bold'
+              className='truncate text-xl font-bold text-white-900'
               href={data.songUrl}
               target='_blank'
               rel='noopener noreferrer'
@@ -53,7 +53,7 @@ const NowPlaying = () => {
             </a>
           ) : (
             <a
-              className='text-white-900 block truncate text-3xl font-bold hover:no-underline'
+              className='block truncate text-3xl font-bold text-white-900 hover:no-underline'
               href={lastPlayed?.songUrl}
               target='_blank'
               rel='noopener noreferrer'
@@ -61,7 +61,7 @@ const NowPlaying = () => {
               {lastPlayed?.title}
             </a>
           )}
-          <p className='text-white-900 -mt-2 w-[22ch] truncate text-base'>
+          <p className='-mt-2 w-[22ch] truncate text-base text-white-900'>
             {data?.artist ?? lastPlayed?.artist}
           </p>
         </div>

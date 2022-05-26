@@ -32,7 +32,7 @@ const Document = () => {
           content='c7d4bbeb097f6c60016e4d0e1828fc38'
         />
       </Head>
-      <body className='text-white-800 bg-white-50'>
+      <body className='bg-white-50 text-white-800'>
         <Main />
         <NextScript />
       </body>

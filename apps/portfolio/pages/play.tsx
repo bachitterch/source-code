@@ -38,7 +38,7 @@ const Play = ({ content }) => {
       />
       <Layout>
         <h1>Play</h1>
-        <p className='text-tiny text-white-600 mb-6 md:text-base'>
+        <p className='mb-6 text-tiny text-white-600 md:text-base'>
           All the images you see here are shot by me using an Apple iPhone 11
           Pro.
         </p>
