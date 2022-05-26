@@ -18,6 +18,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:twchat": "turbo run dev --scope=twchat",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "format": "prettier --write '**/*.{ts,tsx,js,jsx,json,css,scss}'"
