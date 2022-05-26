@@ -68,7 +68,7 @@ const Home = ({ projects, posts }) => {
                 </Link>{' '}
                 page to know what I&#39;m currently doing.
               </p>
-              <div className='authorSocials flex gap-4 flex-wrap'>
+              <div className='authorSocials flex flex-wrap gap-4'>
                 <a target='blank' href='https://twitter.com/bachitterch'>
                   Twitter
                 </a>
@@ -88,7 +88,7 @@ const Home = ({ projects, posts }) => {
             <h2 className='mb-6 mt-2'>Projects</h2>
             <div className='space-y-6'>
               {(!projects.length && (
-                <p className='text-center text-white-600 text-base'>
+                <p className='text-white-600 text-center text-base'>
                   No Projects Found!
                 </p>
               )) ||
@@ -134,7 +134,7 @@ const Home = ({ projects, posts }) => {
             <h2 className='mb-6 mt-2'>Posts</h2>
             <div className='space-y-6'>
               {(!posts.length && (
-                <p className='text-center text-white-600 text-base'>
+                <p className='text-white-600 text-center text-base'>
                   No Article Found!
                 </p>
               )) ||
@@ -153,7 +153,7 @@ const Home = ({ projects, posts }) => {
                             blurDataURL={post.thumbnail}
                             className='projectImage rounded-xl'
                           ></Image>
-                          <h3 className='mb-2 mt-4 text-white-800'>
+                          <h3 className='text-white-800 mb-2 mt-4'>
                             {post.title}
                           </h3>
                           <p className='text-base'>{post.summary}</p>
@@ -165,7 +165,7 @@ const Home = ({ projects, posts }) => {
             </div>
           </div>
           <div className='widgets space-y-6'>
-            <div className='grid grid-flow-row sm:grid-cols-2  mt-2 gap-6'>
+            <div className='mt-2 grid grid-flow-row  gap-6 sm:grid-cols-2'>
               <NowPlaying />
               <WeatherWidget />
             </div>

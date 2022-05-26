@@ -17,7 +17,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "check-types": "tsc --pretty --noEmit",
+    "test": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
   },
   "dependencies": {
     "@fontsource/source-code-pro": "^4.5.6",
@@ -41,6 +44,7 @@
     "eslint-config-custom": "*",
     "postcss": "^8.4.12",
     "postcss-100vh-fix": "^1.0.2",
+    "prettier": "latest",
     "prettier-plugin-tailwindcss": "^0.1.10",
     "rss": "^1.2.2",
     "tailwindcss": "^3.0.24",

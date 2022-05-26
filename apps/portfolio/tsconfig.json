@@ -2,6 +2,8 @@
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "noImplicitReturns": false,
+    "strict": false,
     "paths": {
       "@components/*": ["src/components/*"],
       "@data/*": ["src/data/*"],

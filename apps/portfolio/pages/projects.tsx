@@ -27,12 +27,12 @@ const Projects = ({ projects }) => {
       />
       <Container>
         <h1>Projects</h1>
-        <p className='mb-10 text-tiny opacity-60 md:text-base'>
+        <p className='text-tiny mb-10 opacity-60 md:text-base'>
           Thing I have built on the internet.
         </p>
         <div className='projects_list space-y-6'>
           {(!projects.length && (
-            <p className='text-center text-white-600 text-base'>
+            <p className='text-white-600 text-center text-base'>
               No Project Found!
             </p>
           )) ||
@@ -49,8 +49,8 @@ const Projects = ({ projects }) => {
                     blurDataURL={project.thumbnail}
                     className='projectImage rounded-xl'
                   ></Image>
-                  <h2 className='mb-2 mt-4 text-white-800'>{project.title}</h2>
-                  <p className='text-base mb-4'>{project.summary}</p>
+                  <h2 className='text-white-800 mb-2 mt-4'>{project.title}</h2>
+                  <p className='mb-4 text-base'>{project.summary}</p>
                   <div className='project-links flex gap-4'>
                     <a
                       target='blank'

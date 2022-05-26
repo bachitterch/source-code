@@ -100,7 +100,7 @@ const Post = ({ content, frontMatter }) => {
             alt={'article cover'}
           ></Image>
           <h1 className='mb-2'>{frontMatter.Title}</h1>
-          <div className='mb-10 flex space-x-2 items-center italic text-white-600'>
+          <div className='text-white-600 mb-10 flex items-center space-x-2 italic'>
             --&nbsp;
             <a
               href='https://twitter.com/bachitterch'
@@ -112,7 +112,7 @@ const Post = ({ content, frontMatter }) => {
             <span>{frontMatter.Date}</span>
           </div>
 
-          <div className='space-y-6 mb-6'>
+          <div className='mb-6 space-y-6'>
             {content.map(block => (
               <Fragment key={block.id}>{renderBlocks(block)}</Fragment>
             ))}

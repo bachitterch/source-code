@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "check-types": "tsc --pretty --noEmit",
+    "test": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
   },
   "dependencies": {
     "next": "12.1.6",
@@ -19,6 +22,7 @@
     "@types/react-dom": "18.0.5",
     "eslint": "8.16.0",
     "eslint-config-custom": "*",
+    "prettier": "latest",
     "tsconfig": "*",
     "typescript": "4.7.2"
   }

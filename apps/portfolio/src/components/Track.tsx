@@ -3,11 +3,11 @@ import Image from 'next/image'
 
 const Track = (track: Song) => {
   return (
-    <div className='flex flex-row items-start border-b border-white-200 mt-6'>
-      <p className='text-sm font-semibold text-white-600 -mt-[3px]'>
+    <div className='border-white-200 mt-6 flex flex-row items-start border-b'>
+      <p className='text-white-600 -mt-[3px] text-sm font-semibold'>
         {track.ranking}
       </p>
-      <div className='pl-3 flex mb-4 items-center'>
+      <div className='mb-4 flex items-center pl-3'>
         <Image
           src={track?.albumArt}
           layout='raw'
@@ -22,11 +22,11 @@ const Track = (track: Song) => {
             href={track?.songUrl}
             target='_blank'
             rel='noopener noreferrer'
-            className='font-medium text-white-800 w-60 sm:w-96 md:w-full truncate'
+            className='text-white-800 w-60 truncate font-medium sm:w-96 md:w-full'
           >
             {track?.title}
           </a>
-          <p className='text-white-600  w-60 sm:w-96 md:w-full truncate'>
+          <p className='text-white-600  w-60 truncate sm:w-96 md:w-full'>
             {track?.artist}
           </p>
         </div>

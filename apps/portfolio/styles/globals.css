@@ -19,15 +19,15 @@
 }
 
 ::-webkit-scrollbar {
-  @apply w-0 h-0 sm:w-1 sm:h-1;
+  @apply h-0 w-0 sm:h-1 sm:w-1;
 }
 
 ::-webkit-scrollbar-track {
-  @apply rounded-lg bg-white-200;
+  @apply bg-white-200 rounded-lg;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded-lg bg-white-800;
+  @apply bg-white-800 rounded-lg;
 }
 
 html {
@@ -42,23 +42,23 @@ html {
 }
 
 h1 {
-  @apply font-bold text-4xl leading-[3rem] mt-8;
+  @apply mt-8 text-4xl font-bold leading-[3rem];
 }
 
 h2 {
-  @apply font-bold text-2xl leading-10;
+  @apply text-2xl font-bold leading-10;
 }
 
 h3 {
-  @apply font-semibold text-xl leading-8;
+  @apply text-xl font-semibold leading-8;
 }
 
 p {
-  @apply font-normal text-lg leading-8;
+  @apply text-lg font-normal leading-8;
 }
 
 a {
-  @apply font-medium text-white-500 hover:underline  underline-offset-1;
+  @apply text-white-500 font-medium underline-offset-1  hover:underline;
 }
 
 .spotify-image {

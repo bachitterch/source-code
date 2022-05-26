@@ -57,7 +57,7 @@ const WeatherWidget = () => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center'
       }}
-      className='flex p-6 rounded-xl flex-col w-full h-56 justify-end relative'
+      className='relative flex h-56 w-full flex-col justify-end rounded-xl p-6'
       id='weather-widget'
     >
       <a
@@ -72,10 +72,10 @@ const WeatherWidget = () => {
         <p className='text-[3rem] font-bold'>{Math.round(data?.temp)}°</p>
         <p className='text-sm leading-none'>{data?.description}</p>
         <div>
-          <p className='text-sm font-semibold leading-none mb-0.5'>
+          <p className='mb-0.5 text-sm font-semibold leading-none'>
             {data?.city}
           </p>
-          <div className='flex gap-2 text-xs text-white-500'>
+          <div className='text-white-500 flex gap-2 text-xs'>
             <span>{Math.round(data?.max)}°</span>
             <span>{Math.round(data?.min)}°</span>
           </div>

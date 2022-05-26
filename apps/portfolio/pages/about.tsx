@@ -35,7 +35,7 @@ const About = ({ content }) => {
       />
       <Layout>
         <h1>About</h1>
-        <p className='mb-6 text-tiny text-white-600 md:text-base'>
+        <p className='text-tiny text-white-600 mb-6 md:text-base'>
           Who, what, where and everything else you wanna know about me is here.
         </p>
         <div className='space-y-6'>

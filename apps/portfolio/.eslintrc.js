@@ -1,5 +1,6 @@
 module.exports = {
-  extends: ['./node_modules/config/eslint-preset'],
+  root: true,
+  extends: ['custom'],
   rules: {
     'no-unused-vars': 0,
     'no-undef': 0,
