@@ -39,6 +39,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+#rss - portfolio
+/rss/
+
 # turbo
 .turbo
 
