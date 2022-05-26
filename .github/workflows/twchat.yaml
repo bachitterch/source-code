@@ -1,4 +1,4 @@
-name: Portfolio
+name: Twchat
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'apps/portfolio/**'
+      - 'apps/twchat/**'
   pull_request:
     branches: [main]
 
