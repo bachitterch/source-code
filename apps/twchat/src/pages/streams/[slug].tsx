@@ -67,17 +67,17 @@ const Stream: NextPage = ({ streamdata }: any) => {
     return setUserData((prevstate: any) => [...prevstate, { message, tags }])
   }
 
-  // const timeoutUser = (username: string) => {
-  //   client.timeout(streamer, username, 300)
-  // }
+  const timeoutUser = (username: string) => {
+    client.timeout(streamer, username, 300)
+  }
 
-  // const deleteMessage = (id: string) => {
-  //   client.deletemessage(streamer, id)
-  // }
+  const deleteMessage = (id: string) => {
+    client.deletemessage(streamer, id)
+  }
 
-  // const banUser = (username: string) => {
-  //   client.ban(streamer, username)
-  // }
+  const banUser = (username: string) => {
+    client.ban(streamer, username)
+  }
 
   return (
     <div>
@@ -91,7 +91,7 @@ const Stream: NextPage = ({ streamdata }: any) => {
           <div>
             {userData.map((user: any) => (
               <div className='flex' key={user.tags.id}>
-                {/* {user.tags.mod ? (
+                {user.tags.mod ? (
                   <div>
                     <button
                       onClick={() => {
@@ -115,7 +115,7 @@ const Stream: NextPage = ({ streamdata }: any) => {
                       Delete Message
                     </button>
                   </div>
-                ) : null} */}
+                ) : null}
                 <span>{user.tags['display-name']}</span>:{' '}
                 <span
                   className='flex'
