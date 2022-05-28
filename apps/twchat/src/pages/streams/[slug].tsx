@@ -93,27 +93,31 @@ const Stream: NextPage = ({ streamdata }: any) => {
               <div className='flex' key={user.tags.id}>
                 {user.tags.mod ? (
                   <div>
-                    <button
-                      onClick={() => {
-                        banUser(user.tags.username)
-                      }}
-                    >
-                      Ban
-                    </button>
-                    <button
-                      onClick={() => {
-                        timeoutUser(user.tags.username)
-                      }}
-                    >
-                      Timeout
-                    </button>
-                    <button
-                      onClick={() => {
-                        deleteMessage(user.tags.id)
-                      }}
-                    >
-                      Delete Message
-                    </button>
+                    {!user.tags.mod ? (
+                      <div>
+                        <button
+                          onClick={() => {
+                            banUser(user.tags.username)
+                          }}
+                        >
+                          Ban
+                        </button>
+                        <button
+                          onClick={() => {
+                            timeoutUser(user.tags.username)
+                          }}
+                        >
+                          Timeout
+                        </button>
+                        <button
+                          onClick={() => {
+                            deleteMessage(user.tags.id)
+                          }}
+                        >
+                          Delete Message
+                        </button>
+                      </div>
+                    ) : null}
                   </div>
                 ) : null}
                 <span>{user.tags['display-name']}</span>:{' '}
