@@ -91,9 +91,9 @@ const Stream: NextPage = ({ streamdata }: any) => {
           <div>
             {userData.map((user: any) => (
               <div className='flex' key={user.tags.id}>
-                {user.tags.mod ? (
+                {user.tags.mod === true ? null : (
                   <div>
-                    {!user.tags.mod ? (
+                    {user.tags.mod === false ? (
                       <div>
                         <button
                           onClick={() => {
@@ -119,7 +119,7 @@ const Stream: NextPage = ({ streamdata }: any) => {
                       </div>
                     ) : null}
                   </div>
-                ) : null}
+                )}
                 <span>{user.tags['display-name']}</span>:{' '}
                 <span
                   className='flex'
