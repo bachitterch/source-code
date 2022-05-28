@@ -131,13 +131,16 @@ const Stream: NextPage = ({ streamdata }: any) => {
             ))}
           </div>
           <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='fixed bottom-0 flex gap-1'>
               <input
                 type='text'
+                className='border'
                 value={msg}
                 onChange={e => setMsg(e.target.value)}
               />
-              <button type='submit'>Send</button>
+              <button className='border' type='submit'>
+                Send
+              </button>
             </form>
           </div>
         </div>
