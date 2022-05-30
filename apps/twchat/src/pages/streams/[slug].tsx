@@ -32,7 +32,8 @@ const Stream: NextPage = ({ streamdata }: any) => {
 
   const clientOptions = {
     options: {
-      skipUpdatingEmotesets: true
+      skipUpdatingEmotesets: true,
+      clientId: process.env.TWITCH_CLIENT_ID || ''
     },
     connection: {
       reconnect: true,
@@ -91,7 +92,7 @@ const Stream: NextPage = ({ streamdata }: any) => {
           <div>
             {userData.map((user: any) => (
               <div className='flex' key={user.tags.id}>
-                {user.tags.mod === true ? null : (
+                {user.tags.mod === true ? (
                   <div>
                     {user.tags.mod === false ? (
                       <div>
@@ -119,7 +120,7 @@ const Stream: NextPage = ({ streamdata }: any) => {
                       </div>
                     ) : null}
                   </div>
-                )}
+                ) : null}
                 <span>{user.tags['display-name']}</span>:{' '}
                 <span
                   className='flex'
