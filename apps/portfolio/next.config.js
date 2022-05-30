@@ -27,7 +27,9 @@ const nextConfig = {
   experimental: {
     images: {
       layoutRaw: true
-    }
+    },
+    legacyBrowsers: false,
+    browsersListForSwc: true
   }
 }
 

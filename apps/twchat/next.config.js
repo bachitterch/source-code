@@ -4,6 +4,10 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['api.twitch.tv', 'static-cdn.jtvnw.net']
+  },
+  experimental: {
+    legacyBrowsers: false,
+    browsersListForSwc: true
   }
 }
 
