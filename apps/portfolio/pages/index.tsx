@@ -100,8 +100,8 @@ const Home = ({ projects, posts }) => {
                         alt={project.title}
                         objectFit='cover'
                         objectPosition='top'
-                        width={1200/2}
-                        height={684/2}
+                        width={1200 / 2}
+                        height={684 / 2}
                         placeholder='blur'
                         blurDataURL={project.thumbnail}
                         className='projectImage rounded-xl'
@@ -147,8 +147,8 @@ const Home = ({ projects, posts }) => {
                             src={post.thumbnail}
                             alt={post.title}
                             objectFit='cover'
-                            width={1200/2}
-                            height={684/2}
+                            width={1200 / 2}
+                            height={684 / 2}
                             placeholder='blur'
                             blurDataURL={post.thumbnail}
                             className='projectImage rounded-xl'
