@@ -1,4 +1,4 @@
-import { getStreams } from '@lib/twtich'
+import { getFollowedStreams } from '@lib/twtich'
 import React, { useState, useEffect, FormEvent } from 'react'
 import { NextPage } from 'next'
 import { getSession, useSession } from 'next-auth/react'
@@ -184,7 +184,8 @@ export const getPaths = async (context: any) => {
   const session = await getSession(context)
 
   const token = session?.accessToken as string
-  const data = await getStreams(token)
+  const id = session?.user?.id as string
+  const data = await getFollowedStreams(id, token)
 
   paths.push({
     params: {
@@ -200,9 +201,12 @@ export const getPaths = async (context: any) => {
 
 export const getServerSideProps = async (context: any) => {
   const session = await getSession(context)
-  const token = session?.accessToken as string
 
-  const data = await getStreams(token)
+  const token = session?.accessToken as string
+  const id = session?.user?.id as string
+
+  const data = await getFollowedStreams(id, token)
+
   const stream = data.find(
     (stream: stream) => stream.user_login === context.params.slug
   )
