@@ -1,4 +1,4 @@
-import getStreams from '@lib/getStreams'
+import { getFollowedStreams } from '@lib/twtich'
 import { getSession, useSession } from 'next-auth/react'
 import type { NextPage, NextPageContext } from 'next'
 import Image from 'next/image'
@@ -10,7 +10,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   const token = session?.accessToken as string
   const id = session?.user?.id as string
 
-  const data = await getStreams(id, token)
+  const data = await getFollowedStreams(id, token)
 
   return {
     props: {
