@@ -12,6 +12,7 @@
     "test": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "next": "12.1.6",
     "next-auth": "^4.3.4",
     "react": "18.1.0",

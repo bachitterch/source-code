@@ -26,18 +26,18 @@ const Streams: NextPage = ({ data }: any) => {
     <div>
       <h1>Streams</h1>
       <div>{session?.user?.name}</div>
-      <div>
+      <div className='mt-12 grid space-y-8'>
         {data.map((stream: any) => {
           return (
             <Link href={`/streams/${stream.user_login}`} key={stream.id}>
               <a>
-                <h2>{stream.user_name}</h2>
                 <Image
                   src={`https://static-cdn.jtvnw.net/previews-ttv/live_user_${stream.user_login}.jpg`}
                   width={306.25}
                   alt={stream.user_name}
                   height={172.61}
                 />
+                <h2>{stream.user_name}</h2>
                 <p>{stream.title}</p>
               </a>
             </Link>

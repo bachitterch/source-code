@@ -3,6 +3,7 @@ import React, { useState, useEffect, FormEvent } from 'react'
 import { NextPage } from 'next'
 import { getSession, useSession } from 'next-auth/react'
 import tmi, { Client } from 'tmi.js'
+import cn from 'classnames'
 
 type stream = {
   game_id: string
@@ -22,13 +23,15 @@ type stream = {
 }
 
 const Stream: NextPage = ({ streamdata }: any) => {
+  const [modActionsActive, setModActionsActive] = useState(false)
+
   const [userData, setUserData] = useState<any>([])
   const [msg, setMsg] = useState('')
 
   const { data: session } = useSession()
-  const username = session?.user?.name
+  const username = session?.user?.name || ''
   const token = session?.accessToken
-  const streamer = streamdata?.user_login
+  const streamer: string = streamdata?.user_login || ''
 
   const clientOptions = {
     options: {
@@ -80,6 +83,10 @@ const Stream: NextPage = ({ streamdata }: any) => {
     client.ban(streamer, username)
   }
 
+  console.log(streamdata, userData)
+
+  const isMod = client.isMod(streamer, username)
+
   return (
     <div>
       <h1>Hello Next.js</h1>
@@ -92,35 +99,33 @@ const Stream: NextPage = ({ streamdata }: any) => {
           <div>
             {userData.map((user: any) => (
               <div className='flex' key={user.tags.id}>
-                {user.tags.mod === true && (
-                  <div>
-                    {user.tags.mod === false && (
-                      <div>
-                        <button
-                          onClick={() => {
-                            banUser(user.tags.username)
-                          }}
-                        >
-                          Ban
-                        </button>
-                        <button
-                          onClick={() => {
-                            timeoutUser(user.tags.username)
-                          }}
-                        >
-                          Timeout
-                        </button>
-                        <button
-                          onClick={() => {
-                            deleteMessage(user.tags.id)
-                          }}
-                        >
-                          Delete Message
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
+                <div className={cn(isMod ? 'block' : 'hidden')}>
+                  {user.tags['user-type'] === null && (
+                    <div>
+                      <button
+                        onClick={() => {
+                          banUser(user.tags.username)
+                        }}
+                      >
+                        Ban
+                      </button>
+                      <button
+                        onClick={() => {
+                          timeoutUser(user.tags.username)
+                        }}
+                      >
+                        Timeout
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteMessage(user.tags.id)
+                        }}
+                      >
+                        Delete Message
+                      </button>
+                    </div>
+                  )}
+                </div>
                 <span>{user.tags['display-name']}</span>:{' '}
                 <span
                   className='flex'
