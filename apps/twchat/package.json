@@ -17,6 +17,7 @@
     "next-auth": "^4.3.4",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-twitch-embed-video": "^3.0.2",
     "tmi.js": "^1.8.5"
   },
   "devDependencies": {

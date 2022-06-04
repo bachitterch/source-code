@@ -24,3 +24,5 @@ dist
 
 #vercel
 .vercel
+
+embed.js

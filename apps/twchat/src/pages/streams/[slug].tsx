@@ -1,28 +1,17 @@
-import { getFollowedStreams } from '@lib/twtich'
+import { getFollowedStreams, parseMessage } from '@lib/twtich'
 import React, { useState, useEffect, FormEvent } from 'react'
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage, NextPageContext } from 'next'
 import { getSession, useSession } from 'next-auth/react'
-import tmi, { Client } from 'tmi.js'
-import classNames from 'classnames'
+import tmi, { Client, Userstate } from 'tmi.js'
+import cn from 'classnames'
+import { Session } from 'next-auth'
+import dynamic from 'next/dynamic'
 
-type stream = {
-  game_id: string
-  game_name: string
-  id: string
-  is_mature: boolean
-  language: string
-  started_at: string
-  tag_ids: string[]
-  thumbnail_url: string
-  title: string
-  type: string
-  user_id: string
-  user_login: string
-  user_name: string
-  view_count: number
-}
+const TwitchEmbed = dynamic(() => import('@components/TwitchEmbed'), {
+  ssr: false
+})
 
-const Stream: NextPage = ({ streamdata }: any) => {
+const Stream: NextPage<Props> = ({ streamdata }) => {
   const [userData, setUserData] = useState<any>([])
   const [msg, setMsg] = useState('')
 
@@ -30,8 +19,8 @@ const Stream: NextPage = ({ streamdata }: any) => {
 
   const { data: session } = useSession()
   const username = session?.user?.name || ''
-  const token = session?.accessToken
-  const streamer: string = streamdata?.user_login || ''
+  const token = session?.accessToken || ''
+  const streamer: string = streamdata?.user_name || ''
 
   const clientOptions = {
     options: {
@@ -53,12 +42,14 @@ const Stream: NextPage = ({ streamdata }: any) => {
   client.connect()
 
   useEffect(() => {
-    client.on('chat', (channel, tags, message, self) => {
-      if (self) return
-      const emotes = tags.emotes
+    client.on('chat', (channel, userstate, message, self) => {
+      const emotes = userstate.emotes
       const parsedMessages = parseMessage(message, emotes)
-      updateUserData(parsedMessages, tags)
-      setisMod(tags.mod || false)
+      updateUserData(parsedMessages, userstate)
+
+      if (self && userstate.mod) {
+        setisMod(true)
+      }
     })
   }, [])
 
@@ -68,8 +59,11 @@ const Stream: NextPage = ({ streamdata }: any) => {
     setMsg('')
   }
 
-  const updateUserData = (message: string, tags: any) => {
-    return setUserData((prevstate: any) => [...prevstate, { message, tags }])
+  const updateUserData = (message: string, userstate: Userstate) => {
+    return setUserData((prevstate: any) => [
+      ...prevstate,
+      { message, userstate }
+    ])
   }
 
   const timeoutUser = (username: string) => {
@@ -91,31 +85,33 @@ const Stream: NextPage = ({ streamdata }: any) => {
       {session && (
         <div>
           <div>
-            <p>Streamer: {streamdata.user_name}</p>
+            <p>Streamer: {streamdata?.user_name}</p>
+            <p>{streamdata?.user_id}</p>
+            <TwitchEmbed channel={streamdata?.user_name} />
           </div>
           <div>
-            {userData.map((user: any) => (
-              <div className='flex' key={user.tags.id}>
-                <div className={classNames(isMod ? 'block' : 'hidden')}>
-                  {user.tags['user-type'] === null && (
+            {userData.map((user: UserData) => (
+              <div className='flex' key={user.userstate.id}>
+                <div className={cn(isMod ? 'block' : 'hidden')}>
+                  {user.userstate['user-type'] === null && (
                     <div>
                       <button
                         onClick={() => {
-                          banUser(user.tags.username)
+                          banUser(user.userstate.username)
                         }}
                       >
                         Ban
                       </button>
                       <button
                         onClick={() => {
-                          timeoutUser(user.tags.username)
+                          timeoutUser(user.userstate.username)
                         }}
                       >
                         Timeout
                       </button>
                       <button
                         onClick={() => {
-                          deleteMessage(user.tags.id)
+                          deleteMessage(user.userstate.id || '')
                         }}
                       >
                         Delete Message
@@ -123,7 +119,7 @@ const Stream: NextPage = ({ streamdata }: any) => {
                     </div>
                   )}
                 </div>
-                <span>{user.tags['display-name']}</span>:{' '}
+                <span>{user.userstate['display-name']}</span>:{' '}
                 <span
                   className='flex'
                   dangerouslySetInnerHTML={{
@@ -150,46 +146,18 @@ const Stream: NextPage = ({ streamdata }: any) => {
 }
 export default Stream
 
-const parseMessage = (message: string, emotes: any) => {
-  let newMessage = message.split('')
-
-  for (let emoteIndex in emotes) {
-    let emote = emotes[emoteIndex]
-
-    for (let charIndexes in emote) {
-      let emoteIndexes = emote[charIndexes]
-
-      if (typeof emoteIndexes == 'string') {
-        emoteIndexes = emoteIndexes.split('-')
-        emoteIndexes = [parseInt(emoteIndexes[0]), parseInt(emoteIndexes[1])]
-
-        for (let i = emoteIndexes[0]; i <= emoteIndexes[1]; ++i) {
-          newMessage[i] = ''
-        }
-
-        newMessage[emoteIndexes[0]] =
-          '<img width="25" class="emoticon" src="http://static-cdn.jtvnw.net/emoticons/v1/' +
-          emoteIndex +
-          '/3.0">'
-      }
-    }
-  }
-
-  return newMessage.join('')
-}
-
-export const getPaths = async (context: any) => {
+export const getPaths = async (context: NextPageContext) => {
   let paths: any[] = []
 
   const session = await getSession(context)
 
-  const token = session?.accessToken as string
-  const id = session?.user?.id as string
+  const token = session?.accessToken || ''
+  const id = session?.user?.id || ''
   const data = await getFollowedStreams(id, token)
 
   paths.push({
     params: {
-      slug: data.map((stream: stream) => stream.user_login)
+      slug: data.map((stream: StreamData) => stream.user_login)
     }
   })
 
@@ -199,22 +167,50 @@ export const getPaths = async (context: any) => {
   }
 }
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const session = await getSession(context)
+  const token = session?.accessToken || ''
+  const id = session?.user?.id || ''
 
-  const token = session?.accessToken as string
-  const id = session?.user?.id as string
+  const slug = context?.params?.slug
 
-  const data = await getFollowedStreams(id, token)
+  const res = await getFollowedStreams(id, token)
 
-  const stream = data.find(
-    (stream: stream) => stream.user_login === context.params.slug
+  const streamdata: StreamData = res.find(
+    (stream: StreamData) => stream.user_login === slug
   )
 
   return {
     props: {
       session,
-      streamdata: stream
+      streamdata
     }
   }
+}
+
+type Props = {
+  session: Session
+  streamdata: StreamData
+}
+
+interface StreamData {
+  game_id: string
+  game_name: string
+  id: string
+  is_mature: boolean
+  language: string
+  started_at: string
+  tag_ids: string[]
+  thumbnail_url: string
+  title: string
+  type: string
+  user_id: string
+  user_login: string
+  user_name: string
+  view_count: number
+}
+
+interface UserData {
+  message: string
+  userstate: Userstate
 }

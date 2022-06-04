@@ -15,19 +15,19 @@ export const getServerSideProps = async (context: NextPageContext) => {
   return {
     props: {
       session,
-      data
+      streams: data
     }
   }
 }
 
-const Streams: NextPage = ({ data }: any) => {
+const Streams: NextPage<Props> = ({ streams }) => {
   const { data: session } = useSession()
   return (
     <div>
       <h1>Streams</h1>
       <div>{session?.user?.name}</div>
       <div className='mt-12 grid space-y-8'>
-        {data.map((stream: any) => {
+        {streams.map((stream: StreamData) => {
           return (
             <Link href={`/streams/${stream.user_login}`} key={stream.id}>
               <a>
@@ -48,3 +48,24 @@ const Streams: NextPage = ({ data }: any) => {
   )
 }
 export default Streams
+
+type Props = {
+  streams: StreamData[]
+}
+
+interface StreamData {
+  game_id: string
+  game_name: string
+  id: string
+  is_mature: boolean
+  language: string
+  started_at: string
+  tag_ids: string[]
+  thumbnail_url: string
+  title: string
+  type: string
+  user_id: string
+  user_login: string
+  user_name: string
+  view_count: number
+}

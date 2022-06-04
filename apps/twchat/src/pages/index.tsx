@@ -1,6 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import type { NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   const { data: session } = useSession()
@@ -26,6 +27,11 @@ const Home: NextPage = () => {
             <p>{email}</p>
 
             <Image src={imagesrc} width={100} height={100} alt='twitch' />
+          </div>
+          <div>
+            <Link href='/streams'>
+              <a>Streams</a>
+            </Link>
           </div>
         </div>
       )}

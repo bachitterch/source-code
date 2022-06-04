@@ -1,5 +1,4 @@
 const GET_FOLLOWED_STREAMS_ENDPOINT = `https://api.twitch.tv/helix/streams/followed?`
-const GET_STREAMS_ENDPOINT = `https://api.twitch.tv/helix/streams?`
 
 export const getFollowedStreams = async (
   id: string,
@@ -28,18 +27,32 @@ export const getFollowedStreams = async (
   return data
 }
 
-export const getStreams = async (token: string) => {
-  const clientId = process.env.TWITCH_CLIENT_ID as string
+export const parseMessage = (message: string, emotes: any) => {
+  let newMessage = message.split('')
 
-  const response = await fetch(GET_STREAMS_ENDPOINT, {
-    method: 'GET',
-    headers: {
-      'Client-Id': clientId,
-      Authorization: `Bearer ${token}`
+  for (let emoteIndex in emotes) {
+    let emote = emotes[emoteIndex]
+
+    for (let charIndexes in emote) {
+      let emoteIndexes = emote[charIndexes]
+
+      if (typeof emoteIndexes == 'string') {
+        emoteIndexes = emoteIndexes.split('-')
+        emoteIndexes = [parseInt(emoteIndexes[0]), parseInt(emoteIndexes[1])]
+
+        for (let i = emoteIndexes[0]; i <= emoteIndexes[1]; ++i) {
+          newMessage[i] = ''
+        }
+
+        newMessage[emoteIndexes[0]] =
+          '<img width="25" class="emoticon" src="http://static-cdn.jtvnw.net/emoticons/v1/' +
+          emoteIndex +
+          '/3.0">'
+      }
     }
-  })
+  }
 
-  const { data } = await response.json()
-
-  return data
+  return newMessage.join('')
 }
+
+export const banUser = async () => {}

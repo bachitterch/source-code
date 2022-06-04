@@ -39,7 +39,7 @@ export default NextAuth({
       authorization: {
         params: {
           scope:
-            'openid channel:read:redemptions user:read:email chat:read chat:edit channel:moderate whispers:read whispers:edit user:read:follows moderator:manage:automod moderator:manage:banned_users user:read:subscriptions channel:read:hype_train channel:read:polls'
+            'openid channel:read:redemptions user:read:email chat:read chat:edit channel:moderate whispers:read whispers:edit user:read:follows moderator:manage:automod moderator:manage:banned_users user:read:subscriptions channel:read:hype_train channel:read:polls moderation:read'
         }
       }
     })
