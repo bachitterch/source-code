@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+import linkifyHtml from 'linkifyjs/html'
 const GET_FOLLOWED_STREAMS_ENDPOINT = `https://api.twitch.tv/helix/streams/followed?`
 
 export const getFollowedStreams = async (
@@ -45,14 +47,16 @@ export const parseMessage = (message: string, emotes: any) => {
         }
 
         newMessage[emoteIndexes[0]] =
-          '<img width="25" class="emoticon" src="http://static-cdn.jtvnw.net/emoticons/v1/' +
+          '<img class="emoticon w-7 inline-block" src="http://static-cdn.jtvnw.net/emoticons/v1/' +
           emoteIndex +
           '/3.0">'
       }
     }
   }
 
-  return newMessage.join('')
-}
+  let newMessageString = newMessage.join('')
 
-export const banUser = async () => {}
+  return linkifyHtml(newMessageString, {
+    target: '_blank'
+  })
+}

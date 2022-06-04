@@ -92,7 +92,7 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
   }, [messageId])
 
   return (
-    <div>
+    <div className='max-h-screen'>
       {session && (
         <div className='z-50 mx-auto max-w-3xl '>
           <div className='sticky top-0 bg-gray-50'>
@@ -100,11 +100,11 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
             <p>{streamdata?.user_id}</p>
             <TwitchEmbed channel={streamdata?.user_name} />
           </div>
-          <div className='z-0 mb-8 overflow-y-auto'>
-            <div ref={ref}>
+          <div className='z-0 mb-8 overflow-y-auto pb-4'>
+            <div ref={ref} className=''>
               {userData.map((user: UserData) => (
-                <div className='flex' key={user.userstate.id}>
-                  <div className={cn(isMod ? 'block' : 'hidden')}>
+                <div key={user.userstate.id}>
+                  <span className={cn(isMod ? 'block' : 'hidden')}>
                     {user.userstate['user-type'] === null && (
                       <div>
                         <button
@@ -130,10 +130,9 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
                         </button>
                       </div>
                     )}
-                  </div>
+                  </span>
                   <span>{user.userstate['display-name']}</span>:{' '}
                   <span
-                    className='flex'
                     dangerouslySetInnerHTML={{
                       __html: user.message
                     }}
@@ -142,7 +141,7 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
               ))}
             </div>
           </div>
-          <div>
+          <div className='mt-4'>
             <form
               onSubmit={handleSubmit}
               className='fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl'

@@ -9,3 +9,7 @@
 #twitch-embed iframe {
   @apply absolute inset-0 h-full w-full;
 }
+
+a {
+  @apply text-blue-500;
+}
