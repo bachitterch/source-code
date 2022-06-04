@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import linkifyHtml from 'linkify-html'
 const GET_FOLLOWED_STREAMS_ENDPOINT = `https://api.twitch.tv/helix/streams/followed?`
 
@@ -57,6 +56,7 @@ export const parseMessage = (message: string, emotes: any) => {
   let newMessageString = newMessage.join('')
 
   return linkifyHtml(newMessageString, {
-    target: '_blank'
+    target: '_blank',
+    nofollow: true
   })
 }
