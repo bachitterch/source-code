@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import linkifyHtml from 'linkifyjs/html'
+import linkifyHtml from 'linkify-html'
 const GET_FOLLOWED_STREAMS_ENDPOINT = `https://api.twitch.tv/helix/streams/followed?`
 
 export const getFollowedStreams = async (

@@ -35,11 +35,10 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
       username: username,
       password: 'oauth:' + token
     },
-    channels: [streamer]
+    channels: ['#' + streamer]
   }
 
-  const client: Client = new tmi.Client(clientOptions)
-  client.connect()
+  const client: Client = new tmi.client(clientOptions)
 
   useEffect(() => {
     client.on('chat', (channel, userstate, message, self) => {
@@ -91,6 +90,7 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
     }
   }, [messageId])
 
+  client.connect()
   return (
     <div className='max-h-screen'>
       {session && (
