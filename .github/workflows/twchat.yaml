@@ -52,5 +52,13 @@ jobs:
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.TURBO_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.TWCHAT_PROJECT_ID }}
+      - uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.TURBO_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
+          vercel-args: '--prod'
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.TWCHAT_PROJECT_ID }}
