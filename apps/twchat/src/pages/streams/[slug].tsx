@@ -1,5 +1,5 @@
 import { getFollowedStreams, parseMessage } from '@lib/twtich'
-import React, { useState, useEffect, FormEvent } from 'react'
+import { useState, useEffect, FormEvent, useRef } from 'react'
 import { GetServerSideProps, NextPage, NextPageContext } from 'next'
 import { getSession, useSession } from 'next-auth/react'
 import tmi, { Client, Userstate } from 'tmi.js'
@@ -78,62 +78,78 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
     client.ban(streamer, username)
   }
 
+  const messageId = userData.map((user: UserData) => user?.userstate.id)
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end'
+      })
+    }
+  }, [messageId])
+
   return (
     <div>
-      <h1>Hello Next.js</h1>
-
       {session && (
-        <div>
-          <div>
+        <div className='z-50 mx-auto max-w-3xl '>
+          <div className='sticky top-0 bg-gray-50'>
             <p>Streamer: {streamdata?.user_name}</p>
             <p>{streamdata?.user_id}</p>
             <TwitchEmbed channel={streamdata?.user_name} />
           </div>
-          <div>
-            {userData.map((user: UserData) => (
-              <div className='flex' key={user.userstate.id}>
-                <div className={cn(isMod ? 'block' : 'hidden')}>
-                  {user.userstate['user-type'] === null && (
-                    <div>
-                      <button
-                        onClick={() => {
-                          banUser(user.userstate.username)
-                        }}
-                      >
-                        Ban
-                      </button>
-                      <button
-                        onClick={() => {
-                          timeoutUser(user.userstate.username)
-                        }}
-                      >
-                        Timeout
-                      </button>
-                      <button
-                        onClick={() => {
-                          deleteMessage(user.userstate.id || '')
-                        }}
-                      >
-                        Delete Message
-                      </button>
-                    </div>
-                  )}
+          <div className='z-0 mb-8 overflow-y-auto'>
+            <div ref={ref}>
+              {userData.map((user: UserData) => (
+                <div className='flex' key={user.userstate.id}>
+                  <div className={cn(isMod ? 'block' : 'hidden')}>
+                    {user.userstate['user-type'] === null && (
+                      <div>
+                        <button
+                          onClick={() => {
+                            banUser(user.userstate.username)
+                          }}
+                        >
+                          Ban
+                        </button>
+                        <button
+                          onClick={() => {
+                            timeoutUser(user.userstate.username)
+                          }}
+                        >
+                          Timeout
+                        </button>
+                        <button
+                          onClick={() => {
+                            deleteMessage(user.userstate.id || '')
+                          }}
+                        >
+                          Delete Message
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  <span>{user.userstate['display-name']}</span>:{' '}
+                  <span
+                    className='flex'
+                    dangerouslySetInnerHTML={{
+                      __html: user.message
+                    }}
+                  />
                 </div>
-                <span>{user.userstate['display-name']}</span>:{' '}
-                <span
-                  className='flex'
-                  dangerouslySetInnerHTML={{
-                    __html: user.message
-                  }}
-                />
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div>
-            <form onSubmit={handleSubmit} className='fixed bottom-0 flex gap-1'>
+            <form
+              onSubmit={handleSubmit}
+              className='fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl'
+            >
               <input
                 type='text'
-                className='border'
+                className='w-full border-2 border-black'
                 value={msg}
                 onChange={e => setMsg(e.target.value)}
               />
