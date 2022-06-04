@@ -4,14 +4,10 @@ import { useEffect } from 'react'
 const TwitchEmbed = ({ channel }: any) => {
   const targetID = 'twitch-embed'
 
-  const options = {
-    width: '980px',
-    height: '480px',
-    channel: channel
-  }
-
   useEffect(() => {
-    const player = new Twitch.Player(targetID, options)
+    const player = new Twitch.Player(targetID, {
+      channel: channel
+    })
     player.setVolume(0.5)
   }, [])
 

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#twitch-embed {
+  @apply relative w-full overflow-hidden pt-[56.25%];
+}
+
+#twitch-embed iframe {
+  @apply absolute inset-0 h-full w-full;
+}
