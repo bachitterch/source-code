@@ -92,56 +92,55 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
 
   client.connect()
   return (
-    <div className='max-h-screen'>
+    <div className='mx-auto flex h-full min-h-screen w-full max-w-3xl flex-col overflow-hidden'>
       {session && (
-        <div className='z-50 mx-auto max-w-3xl '>
+        <div className='z-50'>
           <div className='sticky top-0 bg-gray-50'>
             <p>Streamer: {streamdata?.user_name}</p>
-            <p>{streamdata?.user_id}</p>
+
             <TwitchEmbed channel={streamdata?.user_name} />
           </div>
-          <div className='z-0 mb-8 overflow-y-auto pb-4'>
-            <div ref={ref} className=''>
-              {userData.map((user: UserData) => (
-                <div key={user.userstate.id}>
-                  <span className={cn(isMod ? 'block' : 'hidden')}>
-                    {user.userstate['user-type'] === null && (
-                      <div>
-                        <button
-                          onClick={() => {
-                            banUser(user.userstate.username)
-                          }}
-                        >
-                          Ban
-                        </button>
-                        <button
-                          onClick={() => {
-                            timeoutUser(user.userstate.username)
-                          }}
-                        >
-                          Timeout
-                        </button>
-                        <button
-                          onClick={() => {
-                            deleteMessage(user.userstate.id || '')
-                          }}
-                        >
-                          Delete Message
-                        </button>
-                      </div>
-                    )}
-                  </span>
-                  <span>{user.userstate['display-name']}</span>:{' '}
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: user.message
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
+          <div className='z-0 mb-10 flex h-full max-h-[45vh] flex-col overflow-y-auto pb-4'>
+            {userData.map((user: UserData) => (
+              <div key={user.userstate.id}>
+                <span className={cn(isMod ? 'block' : 'hidden')}>
+                  {user.userstate['user-type'] === null && (
+                    <div>
+                      <button
+                        onClick={() => {
+                          banUser(user.userstate.username)
+                        }}
+                      >
+                        Ban
+                      </button>
+                      <button
+                        onClick={() => {
+                          timeoutUser(user.userstate.username)
+                        }}
+                      >
+                        Timeout
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteMessage(user.userstate.id || '')
+                        }}
+                      >
+                        Delete Message
+                      </button>
+                    </div>
+                  )}
+                </span>
+                <span>{user.userstate['display-name']}</span>:{' '}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: user.message
+                  }}
+                />
+              </div>
+            ))}
+            <div ref={ref} className='dummy h-1 w-full'></div>
           </div>
-          <div className='mt-4'>
+          <div>
             <form
               onSubmit={handleSubmit}
               className='fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl'
