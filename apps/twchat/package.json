@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "check-format": "prettier --check .",
-    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "check-lint": "eslint . --ext ts --ext tsx",
     "check-types": "tsc --pretty --noEmit",
     "test": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
   },
