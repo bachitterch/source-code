@@ -41,16 +41,26 @@ const Stream: NextPage<Props> = ({ streamdata }) => {
   const client: Client = new tmi.client(clientOptions)
 
   useEffect(() => {
-    client.on('chat', (channel, userstate, message, self) => {
+    client.on('connected', () => {
+      checkMod()
+    })
+
+    client.on('chat', (channel, userstate, message) => {
       const emotes = userstate.emotes
       const parsedMessages = parseMessage(message, emotes)
       updateUserData(parsedMessages, userstate)
-
-      if (self && userstate.mod) {
-        setisMod(true)
-      }
     })
   }, [])
+
+  const checkMod = () => {
+    client.mods(streamer).then(mods => {
+      if (mods.includes(username)) {
+        setisMod(true)
+      } else {
+        setisMod(false)
+      }
+    })
+  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
