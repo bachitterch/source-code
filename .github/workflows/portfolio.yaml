@@ -19,12 +19,12 @@ jobs:
       TURBO_REMOTE_ONLY: 'true'
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
       - name: Install Yarn
-        run: npm install -g yarn
+        run: npm i -g corepack
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
