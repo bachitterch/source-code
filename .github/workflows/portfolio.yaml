@@ -35,6 +35,9 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
+      - name: Install Yarn
+        run: npm i -g corepack
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
