@@ -44,7 +44,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run Test
-        run: yarn test --scope=twchat
+        run: yarn test
         env:
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}

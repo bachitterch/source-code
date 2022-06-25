@@ -44,7 +44,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run Test
-        run: yarn test --scope=bachitter.dev
+        run: yarn test
         env:
           NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
           ABOUT_PAGE_ID: ${{ secrets.ABOUT_PAGE_ID }}
