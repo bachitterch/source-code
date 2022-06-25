@@ -24,17 +24,21 @@ jobs:
         with:
           fetch-depth: 2
 
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.32.2
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Run Test
-        run: yarn test --scope=bachitter.dev
+        run: pnpm test --scope=bachitter.dev
         env:
           NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
           ABOUT_PAGE_ID: ${{ secrets.ABOUT_PAGE_ID }}
