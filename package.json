@@ -18,6 +18,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:portfolio": "turbo run dev --scope=bachitter.dev",
     "dev:twchat": "turbo run dev --scope=twchat",
     "lint": "turbo run lint",
     "test": "turbo run test",
